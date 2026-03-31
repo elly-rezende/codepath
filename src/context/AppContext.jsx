@@ -33,7 +33,7 @@ function saveState(state) {
 
 export function AppProvider({ children }) {
   const [state, setState] = useState(loadState);
-  const [currentView, setCurrentView] = useState('dashboard');
+  const [currentView, setCurrentView] = useState('landing');
   const [currentLesson, setCurrentLesson] = useState(null);
   const [currentTrack, setCurrentTrack] = useState(null);
 

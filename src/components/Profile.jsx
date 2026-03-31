@@ -1,10 +1,12 @@
 import { useApp } from '../context/AppContext';
+import { useLang } from '../context/LanguageContext';
 
 export default function Profile() {
   const {
     xp, streak, completedLessons, earnedBadges, tracks, badges, levels,
     setCurrentView, getLevel, getTrackProgress, resetProgress,
   } = useApp();
+  const { lang, toggleLang, t } = useLang();
 
   const level = getLevel();
   const totalLessons = tracks.reduce((s, t) => s + t.lessons.length, 0);
@@ -15,26 +17,31 @@ export default function Profile() {
         <button className="navbar-brand" onClick={() => setCurrentView('dashboard')}>
           &gt;_ CodePath
         </button>
+        <div className="navbar-stats">
+          <button className="lang-toggle" onClick={toggleLang} title="Switch language">
+            {lang === 'en' ? '🇧🇷 PT' : '🇺🇸 EN'}
+          </button>
+        </div>
         <div className="navbar-nav">
-          <button className="nav-btn" onClick={() => setCurrentView('dashboard')}>Dashboard</button>
-          <button className="nav-btn active" onClick={() => setCurrentView('profile')}>Profile</button>
+          <button className="nav-btn" onClick={() => setCurrentView('dashboard')}>{t('dashboard')}</button>
+          <button className="nav-btn active" onClick={() => setCurrentView('profile')}>{t('profile')}</button>
         </div>
       </nav>
 
       <div className="profile">
         <div className="profile-header">
           <div style={{ fontSize: 64, marginBottom: 8 }}>👩‍💻</div>
-          <div className="profile-level" style={{ color: level.color }}>{level.name}</div>
+          <div className="profile-level" style={{ color: level.color }}>{t(level.name.toLowerCase())}</div>
           <div className="profile-xp">{xp} XP</div>
           <div style={{ color: 'var(--text-muted)', fontSize: 14, marginTop: 8 }}>
-            {completedLessons.length}/{totalLessons} lessons · {streak} day streak
+            {completedLessons.length}/{totalLessons} {t('lessons')} · {streak} {streak === 1 ? t('day') : t('daysInRow')}
           </div>
         </div>
 
         <div className="card" style={{ marginBottom: 24 }}>
           <div className="card-header">
-            <h2>Skill Badges</h2>
-            <span className="subtitle">{earnedBadges.length}/{badges.length} earned</span>
+            <h2>{t('skillBadges')}</h2>
+            <span className="subtitle">{earnedBadges.length}/{badges.length} {t('earned')}</span>
           </div>
           <div className="badges-grid">
             {badges.map(badge => {
@@ -44,7 +51,7 @@ export default function Profile() {
                   <div className="badge-icon">{badge.icon}</div>
                   <div className="badge-name">{badge.name}</div>
                   <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 4 }}>
-                    {isEarned ? 'Earned!' : badge.description}
+                    {isEarned ? t('earnedBadge') : badge.description}
                   </div>
                 </div>
               );
@@ -54,7 +61,7 @@ export default function Profile() {
 
         <div className="card" style={{ marginBottom: 24 }}>
           <div className="card-header">
-            <h2>Track Progress</h2>
+            <h2>{t('trackProgress')}</h2>
           </div>
           {tracks.map(track => {
             const progress = getTrackProgress(track.id);
@@ -62,7 +69,7 @@ export default function Profile() {
             return (
               <div key={track.id} style={{ marginBottom: 16 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                  <span style={{ fontSize: 14, fontWeight: 500 }}>{track.icon} {track.title}</span>
+                  <span style={{ fontSize: 14, fontWeight: 500 }}>{track.icon} {t(track.title)}</span>
                   <span style={{ fontSize: 12, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
                     {completedCount}/{track.lessons.length}
                   </span>
@@ -77,7 +84,7 @@ export default function Profile() {
 
         <div className="card">
           <div className="card-header">
-            <h2>Level Progression</h2>
+            <h2>{t('levelProgression')}</h2>
           </div>
           {levels.map(lvl => {
             const isCurrent = lvl.name === level.name;
@@ -98,7 +105,7 @@ export default function Profile() {
                   background: xp >= lvl.minXP ? lvl.color : 'var(--border)',
                 }} />
                 <span style={{ flex: 1, fontSize: 14, color: isCurrent ? lvl.color : 'var(--text-secondary)' }}>
-                  {lvl.name}
+                  {t(lvl.name.toLowerCase())}
                 </span>
                 <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
                   {lvl.minXP} - {lvl.maxXP === Infinity ? '∞' : lvl.maxXP} XP
@@ -109,7 +116,7 @@ export default function Profile() {
         </div>
 
         <button
-          onClick={() => { if (window.confirm('Reset all progress? This cannot be undone.')) resetProgress(); }}
+          onClick={() => { if (window.confirm(t('resetConfirm'))) resetProgress(); }}
           style={{
             marginTop: 24,
             padding: '8px 16px',
@@ -122,7 +129,7 @@ export default function Profile() {
             cursor: 'pointer',
           }}
         >
-          Reset All Progress
+          {t('resetAllProgress')}
         </button>
       </div>
     </div>

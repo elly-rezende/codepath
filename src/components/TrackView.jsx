@@ -1,10 +1,12 @@
 import { useApp } from '../context/AppContext';
+import { useLang } from '../context/LanguageContext';
 
 export default function TrackView() {
   const {
     currentTrack, completedLessons,
     setCurrentView, setCurrentLesson, setCurrentTrack, getTrackProgress,
   } = useApp();
+  const { lang, toggleLang, t } = useLang();
 
   if (!currentTrack) {
     setCurrentView('dashboard');
@@ -24,21 +26,26 @@ export default function TrackView() {
         <button className="navbar-brand" onClick={() => setCurrentView('dashboard')}>
           &gt;_ CodePath
         </button>
+        <div className="navbar-stats">
+          <button className="lang-toggle" onClick={toggleLang} title="Switch language">
+            {lang === 'en' ? '🇧🇷 PT' : '🇺🇸 EN'}
+          </button>
+        </div>
         <div className="navbar-nav">
-          <button className="nav-btn" onClick={() => setCurrentView('dashboard')}>Dashboard</button>
-          <button className="nav-btn" onClick={() => setCurrentView('profile')}>Profile</button>
+          <button className="nav-btn" onClick={() => setCurrentView('dashboard')}>{t('dashboard')}</button>
+          <button className="nav-btn" onClick={() => setCurrentView('profile')}>{t('profile')}</button>
         </div>
       </nav>
 
       <div className="track-view">
-        <button className="back-btn" onClick={() => setCurrentView('dashboard')}>← Back to Dashboard</button>
+        <button className="back-btn" onClick={() => setCurrentView('dashboard')}>{t('backToDashboard')}</button>
 
         <div className="track-view-header" style={{ marginTop: 16 }}>
           <div className="track-view-icon">{currentTrack.icon}</div>
           <div>
-            <h1>{currentTrack.title}</h1>
+            <h1>{t(currentTrack.title)}</h1>
             <div style={{ color: 'var(--text-muted)', fontSize: 14 }}>
-              {currentTrack.lessons.length} lessons · {progress}% complete
+              {currentTrack.lessons.length} {t('lessons')} · {progress}% {t('complete')}
             </div>
           </div>
         </div>

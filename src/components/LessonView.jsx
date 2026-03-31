@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useApp } from '../context/AppContext';
+import { useLang } from '../context/LanguageContext';
 import CodeEditor from './CodeEditor';
 import AIExplainer from './AIExplainer';
 
@@ -10,8 +11,9 @@ export default function LessonView() {
     completeLesson, recordFail, recordInstantCorrect,
     shouldSimplify, getTrackProgress,
   } = useApp();
+  const { t } = useLang();
 
-  const [lessonStep, setLessonStep] = useState('concept'); // concept, challenge, complete
+  const [lessonStep, setLessonStep] = useState('concept');
   const [xpEarned, setXpEarned] = useState(0);
 
   if (!currentLesson || !currentTrack) {
@@ -33,7 +35,6 @@ export default function LessonView() {
       }
       setLessonStep('complete');
     } else if (result.passed > 0) {
-      // Partial success
       setXpEarned(Math.round(currentLesson.xp * 0.5));
     } else {
       recordFail(currentLesson.id);
@@ -55,7 +56,7 @@ export default function LessonView() {
     <div className="lesson-view fade-in">
       <div className="lesson-topbar">
         <button className="back-btn" onClick={() => setCurrentView(currentTrack ? 'track' : 'dashboard')}>
-          ← Back
+          {t('back')}
         </button>
         <div className="lesson-progress">
           <div className="lesson-progress-fill" style={{ width: `${progress}%` }} />
@@ -64,25 +65,19 @@ export default function LessonView() {
       </div>
 
       <div className="lesson-content">
-        {/* Hook */}
         <div className="lesson-hook">{currentLesson.hook}</div>
-
-        {/* Title */}
         <h1 className="lesson-title">{currentLesson.title}</h1>
 
-        {/* Concept */}
         {(lessonStep === 'concept' || lessonStep === 'challenge') && (
           <div className="lesson-concept">{currentLesson.concept}</div>
         )}
 
-        {/* Start Challenge Button */}
         {lessonStep === 'concept' && (
           <button className="continue-btn" onClick={() => setLessonStep('challenge')} style={{ alignSelf: 'flex-start' }}>
-            Start Challenge →
+            {t('startChallenge')}
           </button>
         )}
 
-        {/* Code Challenge */}
         {lessonStep === 'challenge' && (
           <CodeEditor
             challenge={currentLesson.challenge}
@@ -91,29 +86,24 @@ export default function LessonView() {
           />
         )}
 
-        {/* XP Reward */}
         {lessonStep === 'complete' && (
           <div className="xp-reward slide-up">
-            <h3>Challenge Complete!</h3>
+            <h3>{t('challengeComplete')}</h3>
             <div className="xp-amount">+{xpEarned} XP</div>
             <div className="message">
-              {xpEarned === currentLesson.xp
-                ? "Perfect score! You nailed it."
-                : "Good effort! You're getting there."
-              }
+              {xpEarned === currentLesson.xp ? t('perfectScore') : t('goodEffort')}
             </div>
             <div className="xp-reward-actions">
               <button className="back-btn" onClick={() => setCurrentView('track')}>
-                Back to Track
+                {t('backToTrack')}
               </button>
               <button className="continue-btn" onClick={goToNextLesson}>
-                Next Lesson →
+                {t('nextLesson')}
               </button>
             </div>
           </div>
         )}
 
-        {/* AI Explainer - always available */}
         <AIExplainer lesson={currentLesson} />
       </div>
     </div>

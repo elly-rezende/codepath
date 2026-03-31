@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   --bg-primary: #12141C;
   --bg-secondary: #1A1D2B;
@@ -57,6 +59,25 @@ body {
 ::-webkit-scrollbar-track { background: var(--bg-primary); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* Language Toggle */
+.lang-toggle {
+  padding: 5px 10px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lang-toggle:hover {
+  border-color: var(--accent-purple);
+  background: rgba(183, 148, 244, 0.1);
+}
 
 /* Navigation */
 .navbar {
@@ -175,12 +196,107 @@ body {
   }
   .navbar {
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 8px;
+    padding: 12px 16px;
+  }
+  .navbar-brand {
+    font-size: 16px;
   }
   .navbar-stats {
     order: 3;
     width: 100%;
     justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .stat-badge {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  .navbar-nav {
+    gap: 4px;
+  }
+  .nav-btn {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+  .dashboard {
+    padding: 16px 12px;
+  }
+  .dashboard-header {
+    margin-bottom: 20px;
+  }
+  .dashboard-header h1 {
+    font-size: 22px;
+  }
+  .card {
+    padding: 16px;
+  }
+  .track-card {
+    padding: 12px;
+    gap: 12px;
+  }
+  .track-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+  .track-info h3 {
+    font-size: 14px;
+  }
+  .lesson-topbar {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  .lesson-content {
+    padding: 16px 12px;
+  }
+  .lesson-title {
+    font-size: 22px;
+  }
+  .code-textarea {
+    min-height: 200px;
+    font-size: 13px;
+  }
+  .editor-header {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+  .editor-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .xp-reward .xp-amount {
+    font-size: 28px;
+  }
+  .xp-reward-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .profile {
+    padding: 16px 12px;
+  }
+  .badges-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 8px;
+  }
+  .track-view {
+    padding: 16px 12px;
+  }
+  .track-view-header h1 {
+    font-size: 20px;
+  }
+  .lesson-item {
+    padding: 12px;
+    gap: 12px;
+  }
+  .ai-response {
+    padding: 14px;
+  }
+  .lang-toggle {
+    padding: 4px 8px;
+    font-size: 12px;
   }
 }
 

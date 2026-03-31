@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react';
+import { useLang } from '../context/LanguageContext';
 
 export default function CodeEditor({ challenge, onResult, simplified }) {
+  const { t } = useLang();
   const [code, setCode] = useState(challenge.starterCode);
   const [output, setOutput] = useState('');
   const [outputType, setOutputType] = useState('neutral');
@@ -14,7 +16,6 @@ export default function CodeEditor({ challenge, onResult, simplified }) {
     setTestResults(null);
 
     try {
-      // Capture console.log output
       const logs = [];
       const originalLog = console.log;
       console.log = (...args) => {
@@ -22,7 +23,6 @@ export default function CodeEditor({ challenge, onResult, simplified }) {
       };
 
       try {
-        // eslint-disable-next-line no-new-func
         new Function(code)();
       } catch (err) {
         logs.push(`Error: ${err.message}`);
@@ -37,10 +37,8 @@ export default function CodeEditor({ challenge, onResult, simplified }) {
       console.log = originalLog;
       setOutput(logs.join('\n'));
 
-      // Run tests
       const results = challenge.tests.map(test => {
         try {
-          // eslint-disable-next-line no-new-func
           const pass = new Function('code', `return ${test.check}`)(code);
           return { ...test, pass: !!pass };
         } catch {
@@ -89,11 +87,11 @@ export default function CodeEditor({ challenge, onResult, simplified }) {
   return (
     <div className="code-editor-section slide-up">
       <div className="editor-header">
-        <h3>// challenge</h3>
+        <h3>{t('challenge')}</h3>
         <div className="editor-actions">
-          <button className="reset-btn" onClick={handleReset}>Reset</button>
+          <button className="reset-btn" onClick={handleReset}>{t('reset')}</button>
           <button className="run-btn" onClick={handleRun} disabled={isRunning}>
-            {isRunning ? 'Running...' : '▶ Run (Ctrl+Enter)'}
+            {isRunning ? t('running') : t('run')}
           </button>
         </div>
       </div>
@@ -101,9 +99,7 @@ export default function CodeEditor({ challenge, onResult, simplified }) {
       <div className="editor-instructions">{challenge.instructions}</div>
 
       {simplified && (
-        <div className="simplified-hint">
-          Hint: Look at the solution structure carefully. The key patterns you need are already in the starter code — focus on replacing the TODO comments with the right values.
-        </div>
+        <div className="simplified-hint">{t('hint')}</div>
       )}
 
       <textarea
@@ -119,10 +115,10 @@ export default function CodeEditor({ challenge, onResult, simplified }) {
 
       <div className="output-panel">
         <div className="output-header">
-          <span>output</span>
+          <span>{t('output')}</span>
         </div>
         <div className={`output-content ${outputType}`}>
-          {output || 'Click "Run" to see output...'}
+          {output || t('clickRun')}
         </div>
       </div>
 
