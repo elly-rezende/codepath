@@ -66,6 +66,9 @@ export function GamificationProvider({ children }) {
   // Confetti trigger
   const [confettiTrigger, setConfettiTrigger] = useState(0);
 
+  // Pending mini-game (shown between lessons)
+  const [pendingMiniGame, setPendingMiniGame] = useState(null);
+
   // Persist state
   useEffect(() => {
     if (typeof window !== 'undefined') localStorage.setItem(COINS_KEY, String(coins));
@@ -163,6 +166,12 @@ export function GamificationProvider({ children }) {
   // === Confetti ===
   const fireConfetti = useCallback(() => setConfettiTrigger(t => t + 1), []);
 
+  // === Mini-games ===
+  const triggerMiniGame = useCallback(() => {
+    setPendingMiniGame({ openedAt: Date.now() });
+  }, []);
+  const closeMiniGame = useCallback(() => setPendingMiniGame(null), []);
+
   const value = {
     // Mascot
     mascotMood,
@@ -212,6 +221,11 @@ export function GamificationProvider({ children }) {
     // Confetti
     confettiTrigger,
     fireConfetti,
+
+    // Mini-games
+    pendingMiniGame,
+    triggerMiniGame,
+    closeMiniGame,
   };
 
   return <GamificationContext.Provider value={value}>{children}</GamificationContext.Provider>;

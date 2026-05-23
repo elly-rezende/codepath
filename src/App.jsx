@@ -15,6 +15,7 @@ import LootBox from './components/gamification/LootBox'
 import AchievementModal from './components/gamification/AchievementModal'
 import LevelUpModal from './components/gamification/LevelUpModal'
 import OnboardingFlow from './components/onboarding/OnboardingFlow'
+import MiniGameLauncher from './components/minigames/MiniGameLauncher'
 
 function App() {
   const appState = useApp();
@@ -26,7 +27,7 @@ function App() {
     mascotMood, mascotMessage, mascotVisible,
     setMascot, fireConfetti, addCoins, pushToast, play,
     triggerLootBox, triggerLevelUp, checkAchievements,
-    setAgeGroup,
+    setAgeGroup, triggerMiniGame,
   } = useGamification();
   const { onboardingComplete, user, completeOnboarding } = useAuth();
 
@@ -101,9 +102,15 @@ function App() {
         else if (newCount % 10 === 0) triggerLootBox('rare');
         else if (newCount % 3 === 0) triggerLootBox('common');
       }, 1500);
+
+      // 33% chance of a mini-game on lessons that don't already drop a loot box
+      const dropsLoot = newCount % 3 === 0;
+      if (!dropsLoot && Math.random() < 0.33) {
+        setTimeout(() => triggerMiniGame(), 3000);
+      }
     }
     prevXp.current = xp;
-  }, [completedLessons.length, xp, setMascot, fireConfetti, addCoins, pushToast, play, triggerLootBox]);
+  }, [completedLessons.length, xp, setMascot, fireConfetti, addCoins, pushToast, play, triggerLootBox, triggerMiniGame]);
 
   // Detect level up
   useEffect(() => {
@@ -169,6 +176,7 @@ function App() {
       <LootBox />
       <AchievementModal />
       <LevelUpModal />
+      <MiniGameLauncher />
       {showMascot && (
         <Mascot
           mood={mascotMood}
