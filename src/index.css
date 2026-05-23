@@ -6,6 +6,7 @@
 @import "./styles/minigames.css";
 @import "./styles/friends.css";
 @import "./styles/shop.css";
+@import "./styles/pwa.css";
 
 /* Base root styles — all design tokens live in tokens.css (synced from Figma) */
 :root {

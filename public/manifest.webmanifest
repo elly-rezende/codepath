@@ -1,0 +1,51 @@
+{
+  "name": "CodePath — Aprenda a Programar",
+  "short_name": "CodePath",
+  "description": "App de programação para crianças e adolescentes. Aprenda Big O, recursão, sistemas distribuídos — com exemplos do TikTok, Discord, Minecraft e Roblox.",
+  "id": "/?source=pwa",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#12141C",
+  "theme_color": "#3B82F6",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "categories": ["education", "games", "kids", "productivity"],
+  "icons": [
+    {
+      "src": "/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Continuar lição",
+      "short_name": "Continuar",
+      "description": "Voltar para a última lição",
+      "url": "/?action=continue",
+      "icons": [{ "src": "/icon-192.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Ver perfil",
+      "short_name": "Perfil",
+      "url": "/?view=profile",
+      "icons": [{ "src": "/icon-192.svg", "sizes": "192x192" }]
+    }
+  ],
+  "prefer_related_applications": false
+}

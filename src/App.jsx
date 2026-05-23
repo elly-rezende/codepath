@@ -16,6 +16,7 @@ import AchievementModal from './components/gamification/AchievementModal'
 import LevelUpModal from './components/gamification/LevelUpModal'
 import OnboardingFlow from './components/onboarding/OnboardingFlow'
 import MiniGameLauncher from './components/minigames/MiniGameLauncher'
+import InstallPrompt from './components/pwa/InstallPrompt'
 
 function App() {
   const appState = useApp();
@@ -177,6 +178,7 @@ function App() {
       <AchievementModal />
       <LevelUpModal />
       <MiniGameLauncher />
+      <InstallPrompt />
       {showMascot && (
         <Mascot
           mood={mascotMood}
