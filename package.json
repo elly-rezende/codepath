@@ -7,9 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sync-tokens": "node scripts/sync-tokens.mjs"
   },
   "dependencies": {
+    "canvas-confetti": "^1.9.4",
     "gsap": "^3.14.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
