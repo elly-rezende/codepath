@@ -1,5 +1,6 @@
 import { useApp } from '../context/AppContext';
 import { useLang } from '../context/LanguageContext';
+import { useTranslatedContent } from '../hooks/useTranslatedContent';
 
 export default function TrackView() {
   const {
@@ -7,6 +8,7 @@ export default function TrackView() {
     setCurrentView, setCurrentLesson, setCurrentTrack, getTrackProgress,
   } = useApp();
   const { lang, toggleLang, t } = useLang();
+  const { tLesson } = useTranslatedContent();
 
   if (!currentTrack) {
     setCurrentView('dashboard');
@@ -56,6 +58,7 @@ export default function TrackView() {
 
         <div className="lesson-list">
           {currentTrack.lessons.map((lesson, i) => {
+            const translated = tLesson(lesson);
             const isCompleted = completedLessons.includes(lesson.id);
             return (
               <div
@@ -67,8 +70,8 @@ export default function TrackView() {
                   {isCompleted ? '✓' : i + 1}
                 </div>
                 <div className="lesson-item-info">
-                  <h3>{lesson.title}</h3>
-                  <div className="xp-label">+{lesson.xp} XP · {lesson.difficulty}</div>
+                  <h3>{translated.title}</h3>
+                  <div className="xp-label">+{lesson.xp} XP · {translated.difficulty}</div>
                 </div>
               </div>
             );

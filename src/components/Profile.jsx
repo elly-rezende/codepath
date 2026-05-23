@@ -1,5 +1,6 @@
 import { useApp } from '../context/AppContext';
 import { useLang } from '../context/LanguageContext';
+import { useTranslatedContent } from '../hooks/useTranslatedContent';
 
 export default function Profile() {
   const {
@@ -7,6 +8,7 @@ export default function Profile() {
     setCurrentView, getLevel, getTrackProgress, resetProgress,
   } = useApp();
   const { lang, toggleLang, t } = useLang();
+  const { tBadge } = useTranslatedContent();
 
   const level = getLevel();
   const totalLessons = tracks.reduce((s, t) => s + t.lessons.length, 0);
@@ -45,13 +47,14 @@ export default function Profile() {
           </div>
           <div className="badges-grid">
             {badges.map(badge => {
+              const translated = tBadge(badge);
               const isEarned = earnedBadges.includes(badge.id);
               return (
                 <div key={badge.id} className={`badge-card ${isEarned ? 'earned' : 'locked'}`}>
                   <div className="badge-icon">{badge.icon}</div>
-                  <div className="badge-name">{badge.name}</div>
+                  <div className="badge-name">{translated.name}</div>
                   <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 4 }}>
-                    {isEarned ? t('earnedBadge') : badge.description}
+                    {isEarned ? t('earnedBadge') : translated.description}
                   </div>
                 </div>
               );
