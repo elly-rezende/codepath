@@ -28,6 +28,9 @@ const translations = {
     reviewNeeded: "Review Needed",
     leaderboard: "Leaderboard",
     multipleFailures: "Multiple failures",
+    dailyChallenge: "Daily Challenge",
+    dailyChallengeSubtitle: "Today's featured lesson — changes every day",
+    takeChallenge: "Take Challenge →",
 
     // Track View
     backToDashboard: "← Back to Dashboard",
@@ -53,10 +56,10 @@ const translations = {
 
     // AI Explainer
     goDeeper: "✨ Go Deeper — Get an AI-Powered Explanation",
-    apiKeyRequired: "🔑 OpenRouter API Key Required",
-    apiKeyDescription: "Enter your OpenRouter API key to enable AI explanations. Get one free at",
-    apiKeyStored: ". Uses free AI model — no cost. Key is stored locally in your browser.",
-    apiKeyPlaceholder: "sk-or-...",
+    apiKeyRequired: "🔑 Anthropic API Key Required",
+    apiKeyDescription: "Enter your Anthropic API key to enable AI explanations (claude-sonnet-4-6). Get one at",
+    apiKeyStored: ". Key stored locally in your browser only — never sent anywhere else.",
+    apiKeyPlaceholder: "sk-ant-...",
     saveAndGo: "Save & Go",
     aiThinking: "✨ AI is thinking...",
     generating: "Generating a personalized explanation...",
@@ -92,12 +95,55 @@ const translations = {
     heroBuildLine1: "Interactive challenges that make you think,",
     heroBuildLine2: "not just copy-paste",
 
-    // Track names
+    // Track names (legacy + new ALPA tracks)
     "CS Fundamentals": "CS Fundamentals",
     "Frontend Mastery": "Frontend Mastery",
     "Backend Fundamentals": "Backend Fundamentals",
     "DevOps Essentials": "DevOps Essentials",
     "System Design": "System Design",
+    "Frontend & Web": "Frontend & Web",
+    "Backend & APIs": "Backend & APIs",
+    "DevOps & Infrastructure": "DevOps & Infrastructure",
+
+    // ALPA phase labels (uppercase for tabs)
+    phaseAssess: "ASSESS",
+    phaseLearn: "LEARN",
+    phasePractice: "PRACTICE",
+    phaseApply: "APPLY",
+    phaseFinal: "FINAL",
+    nextPhase: "Next →",
+    showHint: "💡 Show Hint",
+    runTests: "▶ Run Tests",
+    runCode: "▶ Run Code",
+    checkOrder: "Check Order",
+    continueBtn: "Continue →",
+    showSolution: "👁 Show Solution",
+    hideSolution: "👁 Hide Solution",
+    skipPhase: "Already know this? Skip →",
+    readyToPractice: "I'm ready to practice →",
+    lessonComplete: "🎉 Lesson Complete!",
+
+    // Lesson view extras
+    watchOnCS50: "Watch on CS50 →",
+    realWorld: "💼 Real World",
+    exerciseLabel: "Exercise",
+    levelLabel: "Level",
+    stepLabel: "Step",
+    of: "of",
+    completeAllFor: "Complete all 3 for",
+    allTestsPassed: "All Tests Passed!",
+    levelXComplete: "complete",
+    testsPassing: "tests passing",
+    getHint: "💡 Get Hint",
+    nextHint: "Next Hint",
+    hintLabel: "Hint",
+    solutionLabel: "Solution",
+    attemptLabel: "Attempt",
+    correctGreatJob: "✓ Correct! Great job!",
+    notQuiteTryAgain: "✗ Not quite — try again!",
+    consoleOutput: "Console Output",
+    noOutput: "(no output)",
+    errorLabel: "Error",
   },
 
   pt: {
@@ -125,6 +171,9 @@ const translations = {
     reviewNeeded: "Revisão Necessária",
     leaderboard: "Ranking",
     multipleFailures: "Múltiplas tentativas",
+    dailyChallenge: "Desafio Diário",
+    dailyChallengeSubtitle: "Lição em destaque hoje — muda todo dia",
+    takeChallenge: "Aceitar Desafio →",
 
     // Track View
     backToDashboard: "← Voltar ao Painel",
@@ -150,10 +199,10 @@ const translations = {
 
     // AI Explainer
     goDeeper: "✨ Aprofundar — Explicação com IA",
-    apiKeyRequired: "🔑 Chave da API OpenRouter Necessária",
-    apiKeyDescription: "Insira sua chave da API OpenRouter para habilitar explicações com IA. Obtenha uma grátis em",
-    apiKeyStored: ". Usa modelo de IA gratuito — sem custo. A chave é armazenada localmente no seu navegador.",
-    apiKeyPlaceholder: "sk-or-...",
+    apiKeyRequired: "🔑 Chave da API Anthropic Necessária",
+    apiKeyDescription: "Insira sua chave da API Anthropic para habilitar explicações com IA (claude-sonnet-4-6). Obtenha em",
+    apiKeyStored: ". Chave armazenada localmente no seu navegador — nunca enviada a terceiros.",
+    apiKeyPlaceholder: "sk-ant-...",
     saveAndGo: "Salvar e Ir",
     aiThinking: "✨ IA está pensando...",
     generating: "Gerando uma explicação personalizada...",
@@ -189,12 +238,55 @@ const translations = {
     heroBuildLine1: "Desafios interativos que fazem você pensar,",
     heroBuildLine2: "não apenas copiar e colar",
 
-    // Track names
+    // Track names (legacy + new ALPA tracks)
     "CS Fundamentals": "Fundamentos de CS",
     "Frontend Mastery": "Domínio Frontend",
     "Backend Fundamentals": "Fundamentos Backend",
     "DevOps Essentials": "DevOps Essencial",
     "System Design": "Design de Sistemas",
+    "Frontend & Web": "Frontend & Web",
+    "Backend & APIs": "Backend & APIs",
+    "DevOps & Infrastructure": "DevOps & Infraestrutura",
+
+    // ALPA phase labels (uppercase for tabs)
+    phaseAssess: "AVALIAR",
+    phaseLearn: "APRENDER",
+    phasePractice: "PRATICAR",
+    phaseApply: "APLICAR",
+    phaseFinal: "FINAL",
+    nextPhase: "Próximo →",
+    showHint: "💡 Mostrar Dica",
+    runTests: "▶ Executar Testes",
+    runCode: "▶ Executar Código",
+    checkOrder: "Verificar Ordem",
+    continueBtn: "Continuar →",
+    showSolution: "👁 Mostrar Solução",
+    hideSolution: "👁 Esconder Solução",
+    skipPhase: "Já sei isso? Pular →",
+    readyToPractice: "Estou pronto para praticar →",
+    lessonComplete: "🎉 Lição Completa!",
+
+    // Lesson view extras
+    watchOnCS50: "Assistir no CS50 →",
+    realWorld: "💼 No Mundo Real",
+    exerciseLabel: "Exercício",
+    levelLabel: "Nível",
+    stepLabel: "Etapa",
+    of: "de",
+    completeAllFor: "Complete todos os 3 para",
+    allTestsPassed: "Todos os Testes Passaram!",
+    levelXComplete: "completo",
+    testsPassing: "testes passando",
+    getHint: "💡 Ver Dica",
+    nextHint: "Próxima Dica",
+    hintLabel: "Dica",
+    solutionLabel: "Solução",
+    attemptLabel: "Tentativa",
+    correctGreatJob: "✓ Correto! Mandou bem!",
+    notQuiteTryAgain: "✗ Quase! Tente de novo!",
+    consoleOutput: "Saída do Console",
+    noOutput: "(sem saída)",
+    errorLabel: "Erro",
   },
 };
 
