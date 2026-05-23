@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./styles/tokens.css";
+@import "./styles/profile.css";
 
 /* Base root styles — all design tokens live in tokens.css (synced from Figma) */
 :root {
