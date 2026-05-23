@@ -10,6 +10,7 @@ import { useTranslatedContent } from '../hooks/useTranslatedContent';
 import { buildStudyPlan } from '../data/studyPlan';
 import AvatarUpload from './profile/AvatarUpload';
 import PersonalInfoEditor from './profile/PersonalInfoEditor';
+import Inventory from './profile/Inventory';
 import StreakFlame from './gamification/StreakFlame';
 import AnimatedXPBar from './gamification/AnimatedXPBar';
 
@@ -195,6 +196,11 @@ export default function Profile() {
                   <div className="stat-label">lições</div>
                 </div>
               </div>
+            </div>
+
+            {/* Inventory */}
+            <div className="card">
+              <Inventory />
             </div>
 
             {/* Badges */}

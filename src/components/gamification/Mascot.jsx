@@ -6,12 +6,25 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { useSoundEffects } from '../../hooks/useSoundEffects';
+import { useAuth } from '../../context/AuthContext';
 import { cssVar, lightenColor } from '../../utils/theme';
 
-// Build mood colors at render-time so they reflect the current design tokens.
-// When the user edits tokens.json + runs sync-tokens, all of these update live.
-function getMoodColors() {
-  const brand = cssVar('--color-brand-primary', '#7C5CFF');
+// Skin overrides — when the user equips a skin item, the mascot's idle color changes
+const SKIN_COLOR_MAP = {
+  'skin-cyber':  '#7C5CFF', // Default purple (cyberpunk)
+  'skin-aqua':   '#06B6D4', // Ocean blue
+  'skin-fire':   '#EF4444', // Flame red
+  'skin-mint':   '#10D9C4', // Mint green
+  'skin-galaxy': '#A855F7', // Galaxy purple
+  'skin-golden': '#F59E0B', // Golden
+  'skin-holo':   '#EC4899', // Holographic pink
+};
+
+// Build mood colors at render-time so they reflect the current design tokens
+// AND the user's equipped skin. When user edits tokens or equips a new skin,
+// the mascot updates live.
+function getMoodColors(equippedSkin) {
+  const brand = SKIN_COLOR_MAP[equippedSkin] || cssVar('--color-brand-primary', '#7C5CFF');
   const teal  = cssVar('--color-brand-secondary', '#10D9C4');
   const pink  = cssVar('--color-brand-accent', '#EC4899');
   const amber = cssVar('--color-semantic-warning', '#F59E0B');
@@ -26,6 +39,17 @@ function getMoodColors() {
     waving:      { body: pink,      accent: lightenColor(pink, 20),  eye: '#FFFFFF', pupil: '#1A1B2E' },
   };
 }
+
+// Accessory overlays — small SVG decorations rendered on top of the mascot
+const ACCESSORY_OVERLAYS = {
+  'acc-cap':        { emoji: '🧢', x: 50, y: 12, size: 26, rotation: -15 },
+  'acc-glasses':    { emoji: '🕶️', x: 50, y: 46, size: 30, rotation: 0 },
+  'acc-headphones': { emoji: '🎧', x: 50, y: 25, size: 36, rotation: 0 },
+  'acc-crown':      { emoji: '👑', x: 50, y: 6,  size: 28, rotation: 0 },
+  'acc-wizard':     { emoji: '🧙', x: 50, y: 4,  size: 30, rotation: -10 },
+  'acc-wings':      { emoji: '👼', x: 50, y: 50, size: 100, rotation: 0 },
+  'acc-cape':       { emoji: '🦸', x: 50, y: 55, size: 60, rotation: 0 },
+};
 
 const MOOD_MESSAGES = {
   idle: ['Oi! Pronto pra codar?', 'Vamos aprender algo legal hoje!', 'Eu sou o Bit, seu parceiro de código 🤖', 'Curte uma lição?'],
@@ -56,10 +80,17 @@ export default function Mascot({
   const [currentMessage, setCurrentMessage] = useState(message);
   const [bubbleVisible, setBubbleVisible] = useState(false);
   const { play } = useSoundEffects();
+  const { user } = useAuth();
+
+  // Read user's equipped skin + accessory so the mascot reflects customization
+  const equipped = user?.equipped || {};
+  const equippedSkin = equipped['mascot-skin'];
+  const equippedAccessory = equipped['mascot-accessory'];
 
   // Re-read tokens on each render so live token updates reflect immediately
-  const moodColors = getMoodColors();
+  const moodColors = getMoodColors(equippedSkin);
   const colors = moodColors[mood] || moodColors.idle;
+  const accessoryConfig = equippedAccessory ? ACCESSORY_OVERLAYS[equippedAccessory] : null;
 
   // Update message when mood changes
   useEffect(() => {
@@ -231,6 +262,20 @@ export default function Mascot({
         <rect x="57" y="82" width="8" height="14" rx="3" fill={colors.body} />
         <ellipse cx="39" cy="98" rx="7" ry="3" fill={colors.accent} />
         <ellipse cx="61" cy="98" rx="7" ry="3" fill={colors.accent} />
+
+        {/* Equipped accessory overlay (cap, glasses, crown, etc.) */}
+        {accessoryConfig && (
+          <text
+            x={accessoryConfig.x}
+            y={accessoryConfig.y + accessoryConfig.size * 0.7}
+            fontSize={accessoryConfig.size}
+            textAnchor="middle"
+            transform={accessoryConfig.rotation ? `rotate(${accessoryConfig.rotation} ${accessoryConfig.x} ${accessoryConfig.y})` : undefined}
+            style={{ userSelect: 'none', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.4))' }}
+          >
+            {accessoryConfig.emoji}
+          </text>
+        )}
       </svg>
     </div>
   );
