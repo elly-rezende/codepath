@@ -13,6 +13,7 @@ import PersonalInfoEditor from './profile/PersonalInfoEditor';
 import Inventory from './profile/Inventory';
 import ThemePicker from './profile/ThemePicker';
 import FriendsList from './profile/FriendsList';
+import Shop from './profile/Shop';
 import StreakFlame from './gamification/StreakFlame';
 import AnimatedXPBar from './gamification/AnimatedXPBar';
 
@@ -211,6 +212,11 @@ export default function Profile() {
             {/* Theme Picker */}
             <div className="card">
               <ThemePicker />
+            </div>
+
+            {/* Shop */}
+            <div className="card">
+              <Shop />
             </div>
 
             {/* Inventory */}
