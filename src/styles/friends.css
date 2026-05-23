@@ -1,0 +1,236 @@
+/* ============================================================
+   FRIENDS LIST + LEADERBOARD
+   ============================================================ */
+
+.friends-list { width: 100%; }
+
+.friends-section { margin-bottom: 24px; }
+.friends-section:last-child { margin-bottom: 0; }
+
+.fr-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fr-section-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+}
+.fr-section-hint {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-top: 8px;
+}
+.refresh-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-ui-border);
+  color: var(--color-text-secondary);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.refresh-btn:hover:not(:disabled) {
+  background: var(--color-brand-primary);
+  color: white;
+  transform: rotate(180deg);
+}
+
+/* === INVITE CODE CARD === */
+.invite-code-card {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 217, 196, 0.1));
+  border: 1px solid var(--color-brand-primary);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  text-align: center;
+}
+.invite-code {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: var(--color-brand-primary);
+  margin-bottom: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  user-select: all;
+}
+.invite-actions { display: flex; gap: 8px; justify-content: center; }
+.invite-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-ui-border);
+  color: var(--color-text-primary);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+.invite-btn:hover { background: var(--color-brand-primary); color: white; border-color: var(--color-brand-primary); }
+.invite-btn.share { background: rgba(16, 217, 196, 0.1); border-color: rgba(16, 217, 196, 0.3); color: var(--color-brand-secondary); }
+.invite-btn.share:hover { background: var(--color-brand-secondary); color: #000; }
+
+/* === ADD FRIEND === */
+.add-friend-row {
+  display: flex;
+  gap: 8px;
+}
+.add-friend-input {
+  flex: 1;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid var(--color-ui-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  transition: all 0.2s;
+}
+.add-friend-input:focus {
+  outline: none;
+  border-color: var(--color-brand-primary);
+  background: rgba(255, 255, 255, 0.06);
+}
+.add-friend-btn {
+  padding: 10px 18px;
+  background: var(--color-brand-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+.add-friend-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
+.add-friend-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.add-friend-error {
+  font-size: 12px;
+  color: var(--color-semantic-error);
+  margin-top: 6px;
+  padding: 6px 10px;
+  background: rgba(245, 101, 101, 0.08);
+  border-radius: var(--radius-sm);
+}
+
+/* === LEADERBOARD === */
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lb-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-ui-border-light);
+  border-radius: var(--radius-md);
+  transition: transform 0.15s;
+}
+.lb-row:hover { transform: translateX(2px); }
+.lb-row.is-self {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: var(--color-brand-primary);
+}
+.lb-row.is-first {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.08));
+  border-color: var(--color-semantic-warning);
+}
+.lb-rank {
+  font-size: 18px;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+  width: 32px;
+  text-align: center;
+}
+.lb-rank.rank-1, .lb-rank.rank-2, .lb-rank.rank-3 {
+  font-size: 22px;
+}
+.lb-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-brand-primary), var(--color-brand-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid var(--color-bg-card);
+}
+.lb-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.lb-avatar-initial { color: white; font-weight: 800; font-size: 14px; }
+.lb-info { flex: 1; min-width: 0; }
+.lb-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lb-you {
+  font-size: 11px;
+  color: var(--color-brand-primary);
+  font-weight: 700;
+  margin-left: 4px;
+}
+.lb-stats {
+  display: flex;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  margin-top: 2px;
+}
+.lb-xp { color: var(--color-semantic-warning); }
+.lb-streak { color: var(--color-semantic-error); }
+.lb-remove {
+  background: transparent;
+  border: 1px solid var(--color-ui-border);
+  color: var(--color-text-muted);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  transition: all 0.15s;
+  opacity: 0;
+}
+.lb-row:hover .lb-remove { opacity: 1; }
+.lb-remove:hover { background: var(--color-semantic-error); color: white; border-color: var(--color-semantic-error); }
+
+/* === EMPTY STATES === */
+.friends-empty {
+  text-align: center;
+  padding: 32px 16px;
+}
+.friends-empty.small { padding: 20px 12px; }
+.friends-empty .empty-icon { font-size: 40px; }
+.friends-empty .empty-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 8px 0 4px;
+}
+.friends-empty .empty-desc {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}

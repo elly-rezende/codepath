@@ -12,6 +12,7 @@ import AvatarUpload from './profile/AvatarUpload';
 import PersonalInfoEditor from './profile/PersonalInfoEditor';
 import Inventory from './profile/Inventory';
 import ThemePicker from './profile/ThemePicker';
+import FriendsList from './profile/FriendsList';
 import StreakFlame from './gamification/StreakFlame';
 import AnimatedXPBar from './gamification/AnimatedXPBar';
 
@@ -169,6 +170,14 @@ export default function Profile() {
 
           {/* RIGHT COLUMN */}
           <div className="profile-col">
+
+            {/* Friends + Leaderboard */}
+            <div className="card">
+              <div className="card-header">
+                <h2>👥 Amigos & Ranking</h2>
+              </div>
+              <FriendsList />
+            </div>
 
             {/* Stats summary */}
             <div className="card stats-card">

@@ -4,6 +4,7 @@
 @import "./styles/inventory.css";
 @import "./styles/theme-picker.css";
 @import "./styles/minigames.css";
+@import "./styles/friends.css";
 
 /* Base root styles — all design tokens live in tokens.css (synced from Figma) */
 :root {
