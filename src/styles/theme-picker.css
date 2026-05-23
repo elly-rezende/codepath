@@ -1,0 +1,94 @@
+/* ============================================================
+   THEME PICKER — visual theme selector
+   ============================================================ */
+
+.theme-picker { width: 100%; }
+
+.theme-picker-header {
+  margin-bottom: 16px;
+}
+.theme-picker-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 4px;
+}
+.theme-picker-subtitle {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.theme-card {
+  position: relative;
+  background: rgba(255,255,255,0.03);
+  border: 2px solid var(--color-ui-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  padding: 0;
+}
+.theme-card:hover:not(:disabled):not(.active) {
+  border-color: var(--color-brand-primary);
+  transform: translateY(-3px);
+}
+.theme-card.active {
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 0 24px rgba(59, 130, 246, 0.3), inset 0 0 0 1px var(--color-brand-primary);
+}
+.theme-card.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.theme-card.locked:hover { transform: none; }
+
+/* Preview gradient bar */
+.theme-preview-bar {
+  display: flex;
+  height: 48px;
+}
+.theme-swatch {
+  flex: 1;
+  transition: flex 0.3s ease;
+}
+.theme-card:hover .theme-swatch:nth-child(2) { flex: 1.5; }
+
+.theme-card-body {
+  padding: 12px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.theme-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+.theme-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+.theme-active-tag {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-brand-primary);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.theme-locked-tag {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}

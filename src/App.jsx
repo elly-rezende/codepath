@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useApp } from './context/AppContext'
 import { useGamification } from './context/GamificationContext'
 import { useAuth } from './context/AuthContext'
+import { applyTheme } from './data/themes'
 import Dashboard from './components/Dashboard'
 import LessonView from './components/LessonView'
 import Profile from './components/Profile'
@@ -41,6 +42,13 @@ function App() {
       completeOnboarding();
     }
   }, [onboardingComplete, completedLessons.length, completeOnboarding]);
+
+  // Restore the user's saved visual theme on every render
+  // (covers initial load + theme changes from Profile)
+  useEffect(() => {
+    const themeId = user?.equipped?.theme || 'default';
+    applyTheme(themeId);
+  }, [user?.equipped?.theme]);
 
   // === ONBOARDING ===
   // Show the onboarding wizard on first launch, before anything else

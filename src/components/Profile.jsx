@@ -11,6 +11,7 @@ import { buildStudyPlan } from '../data/studyPlan';
 import AvatarUpload from './profile/AvatarUpload';
 import PersonalInfoEditor from './profile/PersonalInfoEditor';
 import Inventory from './profile/Inventory';
+import ThemePicker from './profile/ThemePicker';
 import StreakFlame from './gamification/StreakFlame';
 import AnimatedXPBar from './gamification/AnimatedXPBar';
 
@@ -196,6 +197,11 @@ export default function Profile() {
                   <div className="stat-label">lições</div>
                 </div>
               </div>
+            </div>
+
+            {/* Theme Picker */}
+            <div className="card">
+              <ThemePicker />
             </div>
 
             {/* Inventory */}
