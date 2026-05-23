@@ -14,6 +14,7 @@ import Inventory from './profile/Inventory';
 import ThemePicker from './profile/ThemePicker';
 import FriendsList from './profile/FriendsList';
 import Shop from './profile/Shop';
+import NotificationSettings from './profile/NotificationSettings';
 import StreakFlame from './gamification/StreakFlame';
 import AnimatedXPBar from './gamification/AnimatedXPBar';
 
@@ -245,6 +246,11 @@ export default function Profile() {
                   );
                 })}
               </div>
+            </div>
+
+            {/* Notifications */}
+            <div className="card">
+              <NotificationSettings />
             </div>
 
             {/* Settings */}

@@ -3,6 +3,8 @@ import { useApp } from './context/AppContext'
 import { useGamification } from './context/GamificationContext'
 import { useAuth } from './context/AuthContext'
 import { applyTheme } from './data/themes'
+import { useNotifications } from './hooks/useNotifications'
+import { useFriends } from './context/FriendsContext'
 import Dashboard from './components/Dashboard'
 import LessonView from './components/LessonView'
 import Profile from './components/Profile'
@@ -31,6 +33,11 @@ function App() {
     setAgeGroup, triggerMiniGame,
   } = useGamification();
   const { onboardingComplete, user, completeOnboarding } = useAuth();
+  const { friends } = useFriends();
+  const { sendFriendActivity } = useNotifications(); // schedules daily + streak timers on mount
+
+  // Cache previous friend XPs to detect when a friend levels up
+  const prevFriendXps = useRef({});
 
   const prevLessons = useRef(completedLessons.length);
   const prevXp = useRef(xp);
@@ -51,6 +58,23 @@ function App() {
     const themeId = user?.equipped?.theme || 'default';
     applyTheme(themeId);
   }, [user?.equipped?.theme]);
+
+  // Detect friend XP increases → fire "friend leveled up" notifications
+  useEffect(() => {
+    friends.forEach(f => {
+      const prev = prevFriendXps.current[f.id];
+      // First seen — just record, don't notify
+      if (prev === undefined) {
+        prevFriendXps.current[f.id] = f.xp;
+        return;
+      }
+      // Significant XP jump (likely a level-up): send notification
+      if (f.xp - prev >= 500) {
+        sendFriendActivity(f.name, 'levelup', 'Intermediário');
+      }
+      prevFriendXps.current[f.id] = f.xp;
+    });
+  }, [friends, sendFriendActivity]);
 
   // === ONBOARDING ===
   // Show the onboarding wizard on first launch, before anything else
