@@ -405,3 +405,80 @@
   text-align: left;
   line-height: 1.6;
 }
+
+/* === CODE TYPING === */
+.ct-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+.ct-subtitle {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+.ct-subtitle strong { color: var(--color-brand-primary); }
+
+.ct-progress-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-full);
+  margin: 16px 0;
+  overflow: hidden;
+}
+.ct-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-brand-primary), var(--color-brand-secondary));
+  transition: width 0.15s ease-out;
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+}
+
+.ct-snippet {
+  background: #0d0f1a;
+  border: 2px solid var(--color-ui-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  user-select: none;
+}
+.ct-char { transition: color 0.05s; }
+.ct-char.correct { color: var(--color-semantic-success); }
+.ct-char.wrong {
+  color: var(--color-semantic-error);
+  background: rgba(245, 101, 101, 0.15);
+  border-radius: 3px;
+}
+.ct-char:not(.correct):not(.wrong):not(.cursor) { color: var(--color-text-muted); }
+.ct-char.cursor {
+  color: var(--color-text-primary);
+  background: var(--color-brand-primary);
+  border-radius: 3px;
+  animation: blinkCursor 1s steps(2) infinite;
+}
+@keyframes blinkCursor { 50% { background: transparent; color: var(--color-brand-primary); } }
+
+.ct-input {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid var(--color-ui-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  transition: all 0.15s;
+}
+.ct-input:focus {
+  outline: none;
+  border-color: var(--color-brand-primary);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+.ct-input:disabled { opacity: 0.6; cursor: not-allowed; }
+

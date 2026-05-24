@@ -9,6 +9,8 @@ import { useQuests } from '../../context/QuestsContext';
 import MemoryMatch from './MemoryMatch';
 import CodeSort from './CodeSort';
 import BugHunt from './BugHunt';
+import CodeTyping from './CodeTyping';
+import VariableHunter from './VariableHunter';
 
 const GAMES = [
   {
@@ -34,6 +36,22 @@ const GAMES = [
     description: 'Encontre o erro no código contra o relógio — 30s!',
     estimatedTime: '~30s',
     Component: BugHunt,
+  },
+  {
+    id: 'codetyping',
+    title: 'Digite Rápido!',
+    icon: '⌨️',
+    description: 'Digite o código exatamente igual — quanto mais rápido, mais moedas!',
+    estimatedTime: '~1 min',
+    Component: CodeTyping,
+  },
+  {
+    id: 'varhunter',
+    title: 'Caça às Variáveis',
+    icon: '🎯',
+    description: 'Encontre todas as variáveis declaradas no código — olho de águia!',
+    estimatedTime: '~30s',
+    Component: VariableHunter,
   },
 ];
 
