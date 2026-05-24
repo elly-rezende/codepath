@@ -34,3 +34,13 @@ ios/DerivedData/
 ios/App/build/
 ios/App/Podfile.lock
 *.xcuserdatad/
+
+# Capacitor Android — generated locally, don't commit
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties
+android/app/release/
+android/captures/
+*.keystore
+*.jks

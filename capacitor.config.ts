@@ -38,6 +38,13 @@ const config: CapacitorConfig = {
   android: {
     backgroundColor: '#12141C',
     allowMixedContent: false,
+    // Use https scheme so localStorage etc. work consistently with web
+    captureInput: true,
+    webContentsDebuggingEnabled: false,
+    // Build optimization
+    minWebViewVersion: 60,
+    // Tell Android to render under the status bar (we handle safe-area in CSS)
+    overrideUserAgent: undefined,
   },
 
   // Native plugin options

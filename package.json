@@ -13,9 +13,16 @@
     "preview": "vite preview",
     "sync-tokens": "node scripts/sync-tokens.mjs",
     "cap:add:ios": "npx cap add ios",
+    "cap:add:android": "npx cap add android",
     "cap:sync": "npm run build && npx cap sync",
+    "cap:sync:ios": "npm run build && npx cap sync ios",
+    "cap:sync:android": "npm run build && npx cap sync android",
     "cap:open:ios": "npx cap open ios",
-    "ios:build": "npm run cap:sync && npm run cap:open:ios"
+    "cap:open:android": "npx cap open android",
+    "ios:build": "npm run cap:sync:ios && npm run cap:open:ios",
+    "android:build": "npm run cap:sync:android && npm run cap:open:android",
+    "android:apk": "npm run cap:sync:android && cd android && gradlew assembleRelease",
+    "android:aab": "npm run cap:sync:android && cd android && gradlew bundleRelease"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.1",
@@ -27,6 +34,7 @@
     "three": "^0.183.2"
   },
   "devDependencies": {
+    "@capacitor/android": "^8.3.4",
     "@capacitor/app": "^8.1.0",
     "@capacitor/cli": "^8.3.4",
     "@capacitor/core": "^8.3.4",
