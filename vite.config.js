@@ -5,6 +5,14 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Three.js is unavoidably ~533KB (powers the 3D Bit mascot).
+  // We chunk-split aggressively (HeroSection, Profile, etc. all lazy)
+  // so users only pay for it when they visit those views.
+  // Bump the warning limit to acknowledge this is intentional.
+  build: {
+    chunkSizeWarningLimit: 900,
+  },
+
   plugins: [
     react(),
     tailwindcss(),
