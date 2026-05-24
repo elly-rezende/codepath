@@ -6,6 +6,7 @@ import { useApp } from '../context/AppContext';
 import { useLang } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
 import { useGamification } from '../context/GamificationContext';
+import { useSubscription } from '../context/SubscriptionContext';
 import { useTranslatedContent } from '../hooks/useTranslatedContent';
 import { buildStudyPlan } from '../data/studyPlan';
 import AvatarUpload from './profile/AvatarUpload';
@@ -30,6 +31,7 @@ export default function Profile() {
   const { lang, toggleLang, t } = useLang();
   const { user, signOut } = useAuth();
   const { soundEnabled, toggleSound, coins, inventory } = useGamification();
+  const { currentPlan, isPaid } = useSubscription();
   const { tBadge } = useTranslatedContent();
 
   const level = getLevel();
@@ -68,6 +70,16 @@ export default function Profile() {
         <div className="navbar-nav">
           <button className="nav-btn" onClick={() => setCurrentView('dashboard')}>{t('dashboard')}</button>
           <button className="nav-btn active" onClick={() => setCurrentView('profile')}>{t('profile')}</button>
+          <button
+            className="nav-btn"
+            onClick={() => setCurrentView('pricing')}
+            style={isPaid
+              ? { background: 'linear-gradient(135deg, var(--color-semantic-warning), var(--color-rarity-legendary))', color: '#000' }
+              : {}
+            }
+          >
+            {isPaid ? `💎 ${currentPlan.name}` : '💎 Pro'}
+          </button>
         </div>
       </nav>
 

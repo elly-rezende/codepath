@@ -1,0 +1,334 @@
+/* ============================================================
+   PRICING PAGE — 3-tier plan comparison
+   ============================================================ */
+
+.pricing-page {
+  min-height: 100vh;
+  padding: 32px 24px 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pricing-back {
+  background: transparent;
+  border: 1px solid var(--color-ui-border);
+  color: var(--color-text-secondary);
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  transition: all 0.2s;
+  margin-bottom: 24px;
+}
+.pricing-back:hover { color: var(--color-text-primary); border-color: var(--color-brand-primary); }
+
+.pricing-hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.pricing-emoji { font-size: 64px; margin-bottom: 12px; animation: float 3s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-10px); } }
+
+.pricing-title {
+  font-size: 40px;
+  font-weight: 900;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+@media (max-width: 600px) { .pricing-title { font-size: 28px; } }
+
+.pricing-subtitle {
+  font-size: 16px;
+  color: var(--color-text-muted);
+  max-width: 540px;
+  margin: 0 auto 24px;
+  line-height: 1.5;
+}
+
+/* === BILLING TOGGLE === */
+.billing-toggle {
+  display: inline-flex;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-ui-border);
+  border-radius: var(--radius-full);
+  padding: 4px;
+}
+.billing-opt {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.billing-opt.active {
+  background: var(--color-brand-primary);
+  color: white;
+  box-shadow: var(--shadow-glow);
+}
+.save-tag {
+  background: var(--color-semantic-warning);
+  color: #1A1B2E;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+/* === PRICING GRID === */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+@media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; } }
+
+.pricing-card {
+  position: relative;
+  background: var(--color-bg-card);
+  border: 2px solid;
+  border-radius: var(--radius-xl);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+}
+.pricing-card:hover { transform: translateY(-4px); }
+.pricing-card.featured {
+  background: linear-gradient(135deg, var(--color-bg-card), rgba(59, 130, 246, 0.1));
+  box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2);
+  transform: scale(1.03);
+}
+.pricing-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+.pricing-card.current { opacity: 0.85; }
+
+.pricing-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.pricing-card-header { margin-bottom: 16px; }
+.pricing-card-name {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 4px;
+  letter-spacing: -0.5px;
+}
+.pricing-card-sub {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.pricing-price-row {
+  margin-bottom: 4px;
+}
+.pricing-price {
+  font-size: 38px;
+  font-weight: 900;
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+}
+.pricing-price-unit {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-left: 6px;
+}
+.pricing-yearly-note {
+  font-size: 11px;
+  color: var(--color-semantic-warning);
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+/* === SEATS PICKER (school plan) === */
+.seats-picker {
+  background: rgba(16, 217, 196, 0.06);
+  border: 1px solid rgba(16, 217, 196, 0.2);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  margin: 16px 0;
+}
+.seats-label {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  display: block;
+  margin-bottom: 6px;
+}
+.seats-input-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.seats-btn {
+  width: 28px;
+  height: 28px;
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-ui-border);
+  color: var(--color-text-primary);
+  border-radius: var(--radius-sm);
+  font-weight: 900;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.seats-btn:hover { background: var(--color-brand-primary); color: white; }
+.seats-input {
+  flex: 1;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-ui-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px;
+  -moz-appearance: textfield;
+}
+.seats-input::-webkit-outer-spin-button,
+.seats-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.seats-total {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+.seats-total strong { color: var(--color-brand-secondary); }
+
+/* === FEATURES LIST === */
+.pricing-features {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.pricing-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.pricing-features li.included { color: var(--color-text-primary); }
+.pricing-features li.excluded { color: var(--color-text-muted); }
+.feature-icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  margin-top: 1px;
+}
+.pricing-features .included .feature-icon { background: var(--color-semantic-success); color: #1A1B2E; }
+.pricing-features .excluded .feature-icon { background: var(--color-bg-tertiary); color: var(--color-text-muted); }
+
+/* === CTA === */
+.pricing-cta {
+  padding: 14px 24px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 16px;
+}
+.pricing-cta:hover:not(:disabled):not(.current) { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(0,0,0,0.3); }
+.pricing-cta:disabled { opacity: 0.6; cursor: not-allowed; }
+.pricing-cta.current {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-text-secondary);
+  cursor: default;
+  border: 1px solid var(--color-ui-border);
+}
+
+.pricing-manage {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.manage-link {
+  background: transparent;
+  border: 1px solid var(--color-ui-border);
+  color: var(--color-text-secondary);
+  padding: 10px 24px;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.manage-link:hover { color: var(--color-text-primary); }
+
+/* === FAQ === */
+.pricing-faq {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.faq-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  text-align: center;
+  margin-bottom: 24px;
+}
+.faq-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-ui-border-light);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin-bottom: 8px;
+}
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-size: 14px;
+  list-style: none;
+  position: relative;
+  padding-right: 24px;
+}
+.faq-item summary::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--color-brand-primary);
+  transition: transform 0.2s;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}

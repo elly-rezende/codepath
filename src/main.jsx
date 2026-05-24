@@ -7,6 +7,7 @@ import { AuthProvider } from './context/AuthContext'
 import { FriendsProvider } from './context/FriendsContext'
 import { QuestsProvider } from './context/QuestsContext'
 import { TeacherProvider } from './context/TeacherContext'
+import { SubscriptionProvider } from './context/SubscriptionContext'
 import App from './App.jsx'
 import './index.css'
 
@@ -19,7 +20,9 @@ createRoot(document.getElementById('root')).render(
             <QuestsProvider>
               <TeacherProvider>
                 <AppProvider>
-                  <App />
+                  <SubscriptionProvider>
+                    <App />
+                  </SubscriptionProvider>
                 </AppProvider>
               </TeacherProvider>
             </QuestsProvider>

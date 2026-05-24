@@ -20,6 +20,7 @@ import LevelUpModal from './components/gamification/LevelUpModal'
 import OnboardingFlow from './components/onboarding/OnboardingFlow'
 import MiniGameLauncher from './components/minigames/MiniGameLauncher'
 import InstallPrompt from './components/pwa/InstallPrompt'
+import PricingPage from './components/pricing/PricingPage'
 
 function App() {
   const appState = useApp();
@@ -208,6 +209,7 @@ function App() {
       {currentView === 'lesson' && <LessonView />}
       {currentView === 'profile' && <Profile />}
       {currentView === 'track' && <TrackView />}
+      {currentView === 'pricing' && <PricingPage />}
 
       {/* Gamification overlays */}
       <ToastStack />
