@@ -11,7 +11,11 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "sync-tokens": "node scripts/sync-tokens.mjs"
+    "sync-tokens": "node scripts/sync-tokens.mjs",
+    "cap:add:ios": "npx cap add ios",
+    "cap:sync": "npm run build && npx cap sync",
+    "cap:open:ios": "npx cap open ios",
+    "ios:build": "npm run cap:sync && npm run cap:open:ios"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.1",
@@ -23,6 +27,13 @@
     "three": "^0.183.2"
   },
   "devDependencies": {
+    "@capacitor/app": "^8.1.0",
+    "@capacitor/cli": "^8.3.4",
+    "@capacitor/core": "^8.3.4",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/ios": "^8.3.4",
+    "@capacitor/splash-screen": "^8.0.1",
+    "@capacitor/status-bar": "^8.0.2",
     "@eslint/js": "^9.39.4",
     "@tailwindcss/vite": "^4.2.2",
     "@types/react": "^19.2.14",

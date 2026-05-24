@@ -27,3 +27,10 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# Capacitor iOS — generated locally on Mac, don't commit
+ios/App/Pods/
+ios/DerivedData/
+ios/App/build/
+ios/App/Podfile.lock
+*.xcuserdatad/

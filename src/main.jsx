@@ -10,6 +10,10 @@ import { TeacherProvider } from './context/TeacherContext'
 import { SubscriptionProvider } from './context/SubscriptionContext'
 import App from './App.jsx'
 import './index.css'
+import { initCapacitor } from './lib/capacitor'
+
+// Initialize Capacitor native bridge (no-op on web)
+initCapacitor();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
