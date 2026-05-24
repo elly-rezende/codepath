@@ -4,10 +4,12 @@
 
 import { useState } from 'react';
 import { useGamification } from '../../context/GamificationContext';
+import { useQuests } from '../../context/QuestsContext';
 import { getShopByCategory, SHOP_CATEGORIES, RARITIES } from '../../data/shop';
 
 export default function Shop() {
   const { coins, inventory, addItem, spendCoins, play, pushToast, fireConfetti } = useGamification();
+  const { trackCoinsSpent } = useQuests();
   const [activeCategory, setActiveCategory] = useState('mascot-skin');
   const [purchasing, setPurchasing] = useState(null); // item.id while transaction in flight
 
@@ -38,6 +40,7 @@ export default function Shop() {
     setTimeout(() => {
       spendCoins(item.price);
       addItem(item);
+      trackCoinsSpent(item.price); // weekly quest progress
       if (item.rarity === 'legendary') fireConfetti();
       play(item.rarity === 'legendary' || item.rarity === 'rare' ? 'rare' : 'chestOpen');
       setPurchasing(null);

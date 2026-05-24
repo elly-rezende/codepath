@@ -5,6 +5,7 @@ import { LanguageProvider } from './context/LanguageContext'
 import { GamificationProvider } from './context/GamificationContext'
 import { AuthProvider } from './context/AuthContext'
 import { FriendsProvider } from './context/FriendsContext'
+import { QuestsProvider } from './context/QuestsContext'
 import App from './App.jsx'
 import './index.css'
 
@@ -14,9 +15,11 @@ createRoot(document.getElementById('root')).render(
       <AuthProvider>
         <FriendsProvider>
           <GamificationProvider>
-            <AppProvider>
-              <App />
-            </AppProvider>
+            <QuestsProvider>
+              <AppProvider>
+                <App />
+              </AppProvider>
+            </QuestsProvider>
           </GamificationProvider>
         </FriendsProvider>
       </AuthProvider>

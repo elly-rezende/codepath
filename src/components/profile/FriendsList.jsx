@@ -7,12 +7,14 @@ import { useAuth } from '../../context/AuthContext';
 import { useFriends } from '../../context/FriendsContext';
 import { useApp } from '../../context/AppContext';
 import { useGamification } from '../../context/GamificationContext';
+import { useQuests } from '../../context/QuestsContext';
 
 export default function FriendsList() {
   const { user } = useAuth();
   const { xp, streak } = useApp();
   const { friendCode, friends, addFriend, removeFriend, refreshFriends, refreshing, getLeaderboard } = useFriends();
   const { play, pushToast } = useGamification();
+  const { trackFriendAdded } = useQuests();
 
   const [inviteCodeInput, setInviteCodeInput] = useState('');
   const [adding, setAdding] = useState(false);
@@ -59,6 +61,7 @@ export default function FriendsList() {
       play('correct');
       pushToast({ title: `${result.friend.name} adicionado!`, subtitle: 'Bora competir 🏆' });
       setInviteCodeInput('');
+      trackFriendAdded(); // weekly quest progress
     }
     setAdding(false);
   };

@@ -15,6 +15,7 @@ import ThemePicker from './profile/ThemePicker';
 import FriendsList from './profile/FriendsList';
 import Shop from './profile/Shop';
 import NotificationSettings from './profile/NotificationSettings';
+import QuestsPanel from './profile/QuestsPanel';
 import StreakFlame from './gamification/StreakFlame';
 import AnimatedXPBar from './gamification/AnimatedXPBar';
 
@@ -91,6 +92,11 @@ export default function Profile() {
 
           {/* LEFT COLUMN */}
           <div className="profile-col">
+
+            {/* Weekly Quests — show first, most actionable */}
+            <div className="card">
+              <QuestsPanel />
+            </div>
 
             {/* Personal Info */}
             <div className="card">

@@ -5,6 +5,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { useGamification } from '../../context/GamificationContext';
+import { useQuests } from '../../context/QuestsContext';
 import MemoryMatch from './MemoryMatch';
 import CodeSort from './CodeSort';
 import BugHunt from './BugHunt';
@@ -38,6 +39,7 @@ const GAMES = [
 
 export default function MiniGameLauncher() {
   const { pendingMiniGame, closeMiniGame, play } = useGamification();
+  const { trackMinigamePlayed } = useQuests();
   const overlayRef = useRef(null);
   const cardRef = useRef(null);
   const [stage, setStage] = useState('intro'); // 'intro' | 'playing'
@@ -85,6 +87,8 @@ export default function MiniGameLauncher() {
 
   const handleFinish = () => {
     play('xpGain');
+    // Mark this mini-game as played for weekly quest progress
+    if (selectedGame) trackMinigamePlayed(selectedGame.id);
     if (overlayRef.current) {
       gsap.to(overlayRef.current, {
         opacity: 0,

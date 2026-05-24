@@ -5,6 +5,7 @@ import { useAuth } from './context/AuthContext'
 import { applyTheme } from './data/themes'
 import { useNotifications } from './hooks/useNotifications'
 import { useFriends } from './context/FriendsContext'
+import { useQuests } from './context/QuestsContext'
 import Dashboard from './components/Dashboard'
 import LessonView from './components/LessonView'
 import Profile from './components/Profile'
@@ -35,6 +36,7 @@ function App() {
   const { onboardingComplete, user, completeOnboarding } = useAuth();
   const { friends } = useFriends();
   const { sendFriendActivity } = useNotifications(); // schedules daily + streak timers on mount
+  const { trackLessonCompleted, trackXpEarned, trackStreakDay } = useQuests();
 
   // Cache previous friend XPs to detect when a friend levels up
   const prevFriendXps = useRef({});
@@ -58,6 +60,11 @@ function App() {
     const themeId = user?.equipped?.theme || 'default';
     applyTheme(themeId);
   }, [user?.equipped?.theme]);
+
+  // Update streak quest progress whenever streak changes
+  useEffect(() => {
+    trackStreakDay(streak);
+  }, [streak, trackStreakDay]);
 
   // Detect friend XP increases → fire "friend leveled up" notifications
   useEffect(() => {
@@ -114,13 +121,20 @@ function App() {
   useEffect(() => {
     if (completedLessons.length > prevLessons.current) {
       const newCount = completedLessons.length;
+      const xpGained = xp - prevXp.current;
       prevLessons.current = newCount;
 
       setMascot('celebrating', null, 4500);
       fireConfetti();
       addCoins(10);
-      pushToast({ type: 'xp', amount: xp - prevXp.current });
+      pushToast({ type: 'xp', amount: xpGained });
       play('allTestsPass');
+
+      // Track for weekly quests
+      // (trackId / wasPerfect unknown here without lesson context — pass undefined for trackId
+      //  which only affects track-specific quests; generic lesson_count still increments)
+      trackLessonCompleted(undefined, false);
+      if (xpGained > 0) trackXpEarned(xpGained);
 
       setTimeout(() => {
         if (newCount % 25 === 0) triggerLootBox('epic');

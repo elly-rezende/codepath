@@ -1,0 +1,193 @@
+/* ============================================================
+   WEEKLY QUESTS PANEL
+   ============================================================ */
+
+.quests-panel { width: 100%; }
+
+.quests-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.quests-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+.quests-subtitle {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.quests-timer {
+  text-align: right;
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+}
+.quests-timer-label {
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.quests-timer-value {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--color-semantic-warning);
+  font-family: var(--font-mono);
+}
+
+.quests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quest-card {
+  display: flex;
+  gap: 14px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-ui-border-light);
+  border-left: 4px solid;
+  border-radius: var(--radius-md);
+  transition: all 0.2s;
+}
+.quest-card:hover { background: rgba(255, 255, 255, 0.05); }
+.quest-card.completed { background: rgba(74, 222, 128, 0.06); }
+.quest-card.claimed {
+  opacity: 0.6;
+  background: rgba(74, 222, 128, 0.04);
+}
+
+.quest-icon {
+  font-size: 32px;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.quest-info { flex: 1; min-width: 0; }
+
+.quest-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.quest-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+.quest-diff {
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.quest-desc {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.quest-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.quest-progress-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.quest-progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.quest-progress-count {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  min-width: 38px;
+  text-align: right;
+}
+
+.quest-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.quest-reward {
+  display: flex;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-semantic-warning);
+  font-family: var(--font-mono);
+}
+
+.quest-claim-btn {
+  padding: 7px 16px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.3px;
+}
+.quest-claim-btn:hover {
+  transform: translateY(-1px) scale(1.03);
+  filter: brightness(1.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+.quest-claimed-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-semantic-success);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.quest-locked-tag {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+.quests-done-banner {
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(236, 72, 153, 0.1));
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-semantic-warning);
+  line-height: 1.5;
+}
