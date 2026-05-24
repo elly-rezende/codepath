@@ -6,6 +6,7 @@ import { GamificationProvider } from './context/GamificationContext'
 import { AuthProvider } from './context/AuthContext'
 import { FriendsProvider } from './context/FriendsContext'
 import { QuestsProvider } from './context/QuestsContext'
+import { TeacherProvider } from './context/TeacherContext'
 import App from './App.jsx'
 import './index.css'
 
@@ -16,9 +17,11 @@ createRoot(document.getElementById('root')).render(
         <FriendsProvider>
           <GamificationProvider>
             <QuestsProvider>
-              <AppProvider>
-                <App />
-              </AppProvider>
+              <TeacherProvider>
+                <AppProvider>
+                  <App />
+                </AppProvider>
+              </TeacherProvider>
             </QuestsProvider>
           </GamificationProvider>
         </FriendsProvider>

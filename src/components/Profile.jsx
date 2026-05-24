@@ -17,6 +17,8 @@ import Shop from './profile/Shop';
 import NotificationSettings from './profile/NotificationSettings';
 import QuestsPanel from './profile/QuestsPanel';
 import Mascot3D from './gamification/Mascot3D';
+import TeacherDashboard from './profile/TeacherDashboard';
+import JoinClassroom from './profile/JoinClassroom';
 import StreakFlame from './gamification/StreakFlame';
 import AnimatedXPBar from './gamification/AnimatedXPBar';
 
@@ -182,6 +184,16 @@ export default function Profile() {
 
           {/* RIGHT COLUMN */}
           <div className="profile-col">
+
+            {/* Teacher Dashboard (or upgrade prompt) */}
+            <div className="card">
+              <TeacherDashboard />
+            </div>
+
+            {/* Join classroom (always visible — students see + teachers can join other classes too) */}
+            <div className="card">
+              <JoinClassroom />
+            </div>
 
             {/* Friends + Leaderboard */}
             <div className="card">
