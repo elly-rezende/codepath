@@ -16,6 +16,7 @@ import FriendsList from './profile/FriendsList';
 import Shop from './profile/Shop';
 import NotificationSettings from './profile/NotificationSettings';
 import QuestsPanel from './profile/QuestsPanel';
+import Mascot3D from './gamification/Mascot3D';
 import StreakFlame from './gamification/StreakFlame';
 import AnimatedXPBar from './gamification/AnimatedXPBar';
 
@@ -69,9 +70,12 @@ export default function Profile() {
       </nav>
 
       <div className="profile">
-        {/* === HERO: Avatar + Name + Level === */}
+        {/* === HERO: Avatar + 3D Bit + Name + Level === */}
         <div className="profile-hero">
           <AvatarUpload size={140} editable={true} />
+          <div className="profile-mascot-3d" title="O Bit em 3D!">
+            <Mascot3D mood="happy" size={140} autoRotate={true} />
+          </div>
           <div className="profile-hero-info">
             <h1 className="profile-name">{user?.name || 'Visitante'}</h1>
             <div className="profile-level-row">
