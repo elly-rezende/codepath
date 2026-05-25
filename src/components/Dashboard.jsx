@@ -1,5 +1,6 @@
 import { useApp } from '../context/AppContext';
 import { useLang } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 import { useTranslatedContent } from '../hooks/useTranslatedContent';
 import OrbitingSkills from './ui/OrbitingSkills';
 
@@ -27,7 +28,11 @@ export default function Dashboard() {
     getLevel, getTrackProgress, getNextLesson, getWeakSpots,
   } = useApp();
   const { lang, toggleLang, t } = useLang();
+  const { user } = useAuth();
   const { tLesson } = useTranslatedContent();
+
+  // Saudação personalizada com o nome do usuário (ou genérica se não logado)
+  const userName = user?.name || (lang === 'pt' ? 'codador(a)' : 'coder');
 
   const level = getLevel();
   const nextLesson = getNextLesson();
@@ -85,7 +90,7 @@ export default function Dashboard() {
         </div>
 
         <div className="dashboard-header">
-          <h1>{t('welcomeBack')}</h1>
+          <h1>{t('welcomeBack')}, {userName}!</h1>
           <p>
             {completedLessons.length === 0
               ? t('readyToStart')

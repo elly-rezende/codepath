@@ -29,7 +29,7 @@ export const tracks = [
     title: 'CS Fundamentals',
     icon: '🧠',
     color: '#00D4FF',
-    description: "Harvard CS50 rigor — the WHY behind everything. Elly's priority track.",
+    description: 'Rigor da Harvard CS50 — o PORQUÊ por trás de tudo.',
     lessons: csfLessons,
   },
   {
@@ -37,7 +37,7 @@ export const tracks = [
     title: 'Frontend & Web',
     icon: '🎨',
     color: '#FF6B6B',
-    description: 'HTML, CSS, JavaScript, DOM, async, React thinking — the visible web.',
+    description: 'HTML, CSS, JavaScript, DOM, async, React — a web que você vê e interage.',
     lessons: fwLessons,
   },
   {
@@ -45,7 +45,7 @@ export const tracks = [
     title: 'Backend & APIs',
     icon: '⚙️',
     color: '#4ECDC4',
-    description: 'Variables, loops, functions, SQL, JOINs, HTTP, auth — what runs on the server.',
+    description: 'Variáveis, loops, SQL, JOINs, HTTP, auth — o que roda nos servidores.',
     lessons: beLessons,
   },
   {
@@ -53,7 +53,7 @@ export const tracks = [
     title: 'DevOps & Infrastructure',
     icon: '🚀',
     color: '#FFE66D',
-    description: 'CLI, Git, Docker, CI/CD, deployment — getting code to production.',
+    description: 'CLI, Git, Docker, CI/CD, deploy — colocando código no ar.',
     lessons: doLessons,
   },
   {
@@ -61,7 +61,7 @@ export const tracks = [
     title: 'System Design',
     icon: '🏗️',
     color: '#A8E6CF',
-    description: 'Client-server, scaling, caching, microservices — architecting for scale.',
+    description: 'Cliente-servidor, escala, cache, microsserviços — arquitetando pra crescer.',
     lessons: sdLessons,
   },
 ];

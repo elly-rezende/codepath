@@ -11,7 +11,7 @@ const translations = {
     level: "Level",
 
     // Dashboard
-    welcomeBack: "Welcome back, Elly",
+    welcomeBack: "Welcome back",
     readyToStart: "Ready to start your journey? Pick a track below.",
     lessonsCompleted: "lessons completed across",
     tracks: "tracks",
@@ -154,7 +154,7 @@ const translations = {
     level: "Nível",
 
     // Dashboard
-    welcomeBack: "Bem-vinda de volta, Elly",
+    welcomeBack: "Bem-vindo(a) de volta",
     readyToStart: "Pronta para começar sua jornada? Escolha uma trilha abaixo.",
     lessonsCompleted: "lições completas em",
     tracks: "trilhas",
